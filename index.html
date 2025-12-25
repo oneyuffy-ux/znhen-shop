@@ -2,209 +2,60 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>znhen shop</title>
+<title>znhen shop - Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-:root{
-  --bg:#0b0f1a; --card:#11172a; --accent:#ff7a00;
-  --text:#e6e9f0; --muted:#9aa4bf; --green:#22c55e;
-}
-*{box-sizing:border-box;}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto;background:radial-gradient(1200px 600px at 50% -10%, #1a2140,var(--bg));color:var(--text);}
-a{color:inherit;text-decoration:none;}
-.container{max-width:1100px;margin:auto;padding:16px;}
-.nav{position:sticky;top:0;z-index:10;backdrop-filter: blur(8px);background:rgba(11,15,26,.6);border-bottom:1px solid #1f2646;}
-.nav .row{display:flex;gap:14px;align-items:center;justify-content:space-between;}
-.brand{font-weight:900;letter-spacing:.5px;}
-.menu a{padding:10px 12px;border-radius:10px;}
-.menu a:hover{background:#1a2140;}
-.hero{margin:20px 0 10px;background:linear-gradient(135deg,#1a2140,#0b0f1a);border:1px solid #1f2646;border-radius:20px;padding:24px;display:grid;gap:10px;}
-.hero h1{margin:0;font-size:28px;}
-.badges{display:flex;gap:8px;flex-wrap:wrap;}
-.badge{font-size:12px;color:#cbd5ff;background:#1a2140;border:1px solid #1f2646;padding:6px 10px;border-radius:999px;}
-.section{margin:18px 0;}
-.section h2{margin:0 0 10px;}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
-.card{background:linear-gradient(180deg,#121a33,#0f1530);border:1px solid #1f2646;border-radius:18px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.25);}
-.card img{width:100%;height:130px;object-fit:cover;border-radius:12px;border:1px solid #1f2646;}
-.card h3{margin:10px 0 4px;}
-.price{color:#ffd166;font-weight:900;}
-.btn{display:inline-flex;gap:8px;align-items:center;justify-content:center;padding:10px 14px;border-radius:999px;border:1px solid #2a356b;background:linear-gradient(135deg,#ff7a00,#ff9f1c);color:#000;font-weight:900;margin-top:8px;}
-.btn.ghost{background:transparent;color:#cbd5ff;border-color:#2a356b;}
-.row2{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;}
-@media(max-width:900px){.row2{grid-template-columns:1fr;}}
-.box{background:linear-gradient(180deg,#121a33,#0f1530);border:1px solid #1f2646;border-radius:18px;padding:14px;}
-input{width:100%;padding:12px;border-radius:12px;border:1px solid #2a356b;background:#0b0f1a;color:var(--text);}
-small{color:var(--muted);}
-.footer{opacity:.7;text-align:center;padding:30px 10px;}
-.hr{height:1px;background:#1f2646;margin:12px 0;}
-.success{color:var(--green);font-weight:900;}
-.point{font-weight:900;}
-.history{background:#1a2140;padding:8px;border-radius:12px;margin-top:6px;font-size:14px;}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto;display:flex;justify-content:center;align-items:center;height:100vh;background:#0b0f1a;color:#e6e9f0;}
+  form{background:#11172a;padding:24px;border-radius:16px;display:flex;flex-direction:column;gap:12px;width:300px;}
+  input{padding:10px;border-radius:8px;border:1px solid #2a356b;background:#0b0f1a;color:#e6e9f0;}
+  button{padding:10px;border:none;border-radius:8px;background:#ff7a00;color:#000;font-weight:900;cursor:pointer;}
+  a{color:#ff7a00;text-decoration:none;}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<div class="nav">
-  <div class="container row">
-    <div class="brand">🛒 znhen shop</div>
-    <div class="menu">
-      <a href="#home">หน้าแรก</a>
-      <a href="#products">สินค้าทั้งหมด</a>
-      <a href="#topup">เติมเงิน</a>
-      <a href="#profile">โปรไฟล์</a>
-      <a href="#contact">ติดต่อเรา</a>
-      <a href="#admin">Admin</a>
-    </div>
-  </div>
-</div>
+<h2>เข้าสู่ระบบ</h2>
+<form id="loginForm">
+  <input type="email" id="loginEmail" placeholder="Email" required>
+  <input type="password" id="loginPassword" placeholder="Password" required>
+  <button type="submit">Login</button>
+</form>
+<p>ยังไม่มีบัญชี? <a href="signup.html">สมัครสมาชิก</a></p>
 
-<div class="container">
-
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <h1>ร้านดิจิทัลสโตร์ เติมไว ใช้ง่าย</h1>
-    <div class="badges">
-      <span class="badge">⚡ เติมเร็ว</span>
-      <span class="badge">🧧 TrueMoney</span>
-      <span class="badge">🔒 ปลอดภัย</span>
-    </div>
-    <small>โค้ดใหม่ ใช้ฟรี ถาวร</small>
-  </section>
-
-  <!-- PRODUCTS -->
-  <section id="products" class="section">
-    <h2>สินค้าทั้งหมด</h2>
-    <div class="grid" id="productGrid"></div>
-  </section>
-
-  <!-- TOPUP -->
-  <section id="topup" class="section">
-    <h2>เติมเงิน (TrueMoney)</h2>
-    <div class="row2">
-      <div class="box">
-        <p>กรอกจำนวนเงิน (1 บาท = 1 พอยต์)</p>
-        <input id="amt" type="number" placeholder="เช่น 100">
-        <button class="btn" onclick="topup()">ยืนยันการเติม</button>
-        <div class="hr"></div>
-        <small>หมายเหตุ: โหมดร้านเล็ก (จำลองการยืนยัน)</small>
-      </div>
-      <div class="box">
-        <h3>พอยต์ของคุณ</h3>
-        <p class="point"><span id="pt">0</span> พอยต์</p>
-        <p id="msg"></p>
-        <div id="history"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROFILE -->
-  <section id="profile" class="section">
-    <h2>โปรไฟล์ลูกค้า</h2>
-    <div class="box">
-      <p>ชื่อผู้ใช้: <span id="username">guest</span></p>
-      <p>พอยต์ทั้งหมด: <span id="ptProfile">0</span></p>
-      <div id="historyProfile"></div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section">
-    <h2>ติดต่อเรา</h2>
-    <div class="box">
-      <p>LINE: <a href="https://line.me/R/ti/p/@znhenshop" target="_blank">@znhenshop</a></p>
-      <p>Facebook: znhen shop</p>
-    </div>
-  </section>
-
-  <!-- ADMIN -->
-  <section id="admin" class="section">
-    <h2>Admin Panel</h2>
-    <div class="box">
-      <p>เพิ่มพอยต์ลูกค้า</p>
-      <input id="adminUser" placeholder="ชื่อผู้ใช้">
-      <input id="adminAmt" type="number" placeholder="จำนวนพอยต์">
-      <button class="btn" onclick="adminAdd()">เพิ่มพอยต์</button>
-    </div>
-  </section>
-
-</div>
-
-<div class="footer">© 2025 znhen shop</div>
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 <script>
-// Setup
-if(!localStorage.getItem('login')) localStorage.setItem('login','guest');
-let username = localStorage.getItem('login');
-document.getElementById('username').innerText=username;
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyBX7r3EhD8uj7hH34rGcrydhLy2NZmllGM",
+  authDomain: "znhen-shop-a082a.firebaseapp.com",
+  projectId: "znhen-shop-a082a",
+  storageBucket: "znhen-shop-a082a.appspot.com",
+  messagingSenderId: "400295230596",
+  appId: "1:400295230596:web:03eafc19db0dfb8e9696d1"
+};
 
-// Products
-const products = [
-  {name:'สินค้า A',price:199,img:'https://picsum.photos/400/240?1'},
-  {name:'สินค้า B',price:299,img:'https://picsum.photos/400/240?2'},
-  {name:'สินค้า C',price:399,img:'https://picsum.photos/400/240?3'},
-];
-const productGrid = document.getElementById('productGrid');
-products.forEach(p=>{
-  const div=document.createElement('div');
-  div.className='card';
-  div.innerHTML=`<img src="${p.img}"><h3>${p.name}</h3><div class="price">${p.price} พอยต์</div><button class="btn" onclick="buy(${p.price},'${p.name}')">ซื้อด้วยพอยต์</button>`;
-  productGrid.appendChild(div);
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// Login
+const loginForm = document.getElementById('loginForm');
+loginForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+
+  auth.signInWithEmailAndPassword(email, password)
+    .then(userCredential => {
+      alert('Login สำเร็จ 🎉');
+      window.location = 'dashboard.html'; // ไปหน้า Dashboard
+    })
+    .catch(error => alert(error.message));
 });
-
-// Points
-function getPoint(){return Number(localStorage.getItem('point')||0)}
-function setPoint(v){localStorage.setItem('point',v);pt.innerText=v;ptProfile.innerText=v;updateHistory('point update: '+v);}
-
-// History
-function updateHistory(msg){
-  let h = JSON.parse(localStorage.getItem('history')||'[]');
-  h.push(msg);
-  localStorage.setItem('history',JSON.stringify(h));
-  history.innerHTML=h.map(m=>`<div class="history">${m}</div>`).join('');
-  historyProfile.innerHTML=history.innerHTML;
-}
-
-// Initialize
-pt.innerText = getPoint();
-ptProfile.innerText = getPoint();
-updateHistory('เข้าสู่ระบบ');
-
-// Topup
-function topup(){
-  const v=Number(amt.value);
-  if(!v||v<=0){alert('กรอกจำนวนเงิน');return;}
-  setPoint(getPoint()+v);
-  msg.innerHTML='<span class="success">เติมเงินสำเร็จ 🎉</span>';
-  amt.value='';
-}
-
-// Buy
-function buy(cost,name){
-  if(getPoint()<cost){alert('พอยต์ไม่พอ');return;}
-  setPoint(getPoint()-cost);
-  alert('สั่งซื้อ '+name+' สำเร็จ 🎉');
-}
-
-// Admin add points
-function adminAdd(){
-  const user=adminUser.value.trim();
-  const amt=Number(adminAmt.value);
-  if(!user||amt<=0){alert('กรอกข้อมูลให้ถูกต้อง');return;}
-  if(user===username){
-    setPoint(getPoint()+amt);
-    alert('เพิ่มพอยต์ให้ '+user+' สำเร็จ 🎉');
-  } else {
-    alert('ผู้ใช้ไม่ตรงกับระบบ demo');
-  }
-  adminUser.value=''; adminAmt.value='';
-}
-
-// Load history on start
-const hstart = JSON.parse(localStorage.getItem('history')||'[]');
-history.innerHTML=hstart.map(m=>`<div class="history">${m}</div>`).join('');
-historyProfile.innerHTML=history.innerHTML;
 </script>
 
 </body>
