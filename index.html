@@ -40,6 +40,7 @@ small{color:var(--muted);}
 .hr{height:1px;background:#1f2646;margin:12px 0;}
 .success{color:var(--green);font-weight:900;}
 .point{font-weight:900;}
+.history{background:#1a2140;padding:8px;border-radius:12px;margin-top:6px;font-size:14px;}
 </style>
 </head>
 <body>
@@ -52,7 +53,9 @@ small{color:var(--muted);}
       <a href="#home">หน้าแรก</a>
       <a href="#products">สินค้าทั้งหมด</a>
       <a href="#topup">เติมเงิน</a>
+      <a href="#profile">โปรไฟล์</a>
       <a href="#contact">ติดต่อเรา</a>
+      <a href="#admin">Admin</a>
     </div>
   </div>
 </div>
@@ -67,32 +70,13 @@ small{color:var(--muted);}
       <span class="badge">🧧 TrueMoney</span>
       <span class="badge">🔒 ปลอดภัย</span>
     </div>
-    <small>ฟีลเดียวกับเว็บตัวอย่าง แต่โค้ดใหม่ ใช้ฟรี ถาวร</small>
+    <small>โค้ดใหม่ ใช้ฟรี ถาวร</small>
   </section>
 
   <!-- PRODUCTS -->
   <section id="products" class="section">
     <h2>สินค้าทั้งหมด</h2>
-    <div class="grid">
-      <div class="card">
-        <img src="https://picsum.photos/400/240?1">
-        <h3>สินค้า A</h3>
-        <div class="price">199 พอยต์</div>
-        <button class="btn" onclick="buy(199)">ซื้อด้วยพอยต์</button>
-      </div>
-      <div class="card">
-        <img src="https://picsum.photos/400/240?2">
-        <h3>สินค้า B</h3>
-        <div class="price">299 พอยต์</div>
-        <button class="btn" onclick="buy(299)">ซื้อด้วยพอยต์</button>
-      </div>
-      <div class="card">
-        <img src="https://picsum.photos/400/240?3">
-        <h3>สินค้า C</h3>
-        <div class="price">399 พอยต์</div>
-        <button class="btn" onclick="buy(399)">ซื้อด้วยพอยต์</button>
-      </div>
-    </div>
+    <div class="grid" id="productGrid"></div>
   </section>
 
   <!-- TOPUP -->
@@ -102,15 +86,26 @@ small{color:var(--muted);}
       <div class="box">
         <p>กรอกจำนวนเงิน (1 บาท = 1 พอยต์)</p>
         <input id="amt" type="number" placeholder="เช่น 100">
-        <button class="btn" style="margin-top:10px" onclick="topup()">ยืนยันการเติม</button>
+        <button class="btn" onclick="topup()">ยืนยันการเติม</button>
         <div class="hr"></div>
-        <small>หมายเหตุ: โหมดร้านเล็ก (จำลองการยืนยัน) พร้อมอัปเกรด API ภายหลัง</small>
+        <small>หมายเหตุ: โหมดร้านเล็ก (จำลองการยืนยัน)</small>
       </div>
       <div class="box">
         <h3>พอยต์ของคุณ</h3>
         <p class="point"><span id="pt">0</span> พอยต์</p>
         <p id="msg"></p>
+        <div id="history"></div>
       </div>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section id="profile" class="section">
+    <h2>โปรไฟล์ลูกค้า</h2>
+    <div class="box">
+      <p>ชื่อผู้ใช้: <span id="username">guest</span></p>
+      <p>พอยต์ทั้งหมด: <span id="ptProfile">0</span></p>
+      <div id="historyProfile"></div>
     </div>
   </section>
 
@@ -123,34 +118,93 @@ small{color:var(--muted);}
     </div>
   </section>
 
+  <!-- ADMIN -->
+  <section id="admin" class="section">
+    <h2>Admin Panel</h2>
+    <div class="box">
+      <p>เพิ่มพอยต์ลูกค้า</p>
+      <input id="adminUser" placeholder="ชื่อผู้ใช้">
+      <input id="adminAmt" type="number" placeholder="จำนวนพอยต์">
+      <button class="btn" onclick="adminAdd()">เพิ่มพอยต์</button>
+    </div>
+  </section>
+
 </div>
 
 <div class="footer">© 2025 znhen shop</div>
 
 <script>
-// Point functions
+// Setup
+if(!localStorage.getItem('login')) localStorage.setItem('login','guest');
+let username = localStorage.getItem('login');
+document.getElementById('username').innerText=username;
+
+// Products
+const products = [
+  {name:'สินค้า A',price:199,img:'https://picsum.photos/400/240?1'},
+  {name:'สินค้า B',price:299,img:'https://picsum.photos/400/240?2'},
+  {name:'สินค้า C',price:399,img:'https://picsum.photos/400/240?3'},
+];
+const productGrid = document.getElementById('productGrid');
+products.forEach(p=>{
+  const div=document.createElement('div');
+  div.className='card';
+  div.innerHTML=`<img src="${p.img}"><h3>${p.name}</h3><div class="price">${p.price} พอยต์</div><button class="btn" onclick="buy(${p.price},'${p.name}')">ซื้อด้วยพอยต์</button>`;
+  productGrid.appendChild(div);
+});
+
+// Points
 function getPoint(){return Number(localStorage.getItem('point')||0)}
-function setPoint(v){localStorage.setItem('point',v);pt.innerText=v}
+function setPoint(v){localStorage.setItem('point',v);pt.innerText=v;ptProfile.innerText=v;updateHistory('point update: '+v);}
 
-// Topup function
-function topup(){
-  const v = Number(amt.value);
-  if(!v||v<=0) return alert('กรอกจำนวนเงิน');
-  setPoint(getPoint()+v);
-  msg.innerHTML = '<span class="success">เติมเงินสำเร็จ 🎉</span>';
-  amt.value='';
-}
-
-// Buy product function
-function buy(cost){
-  const p = getPoint();
-  if(p<cost) return alert('พอยต์ไม่พอ');
-  setPoint(p-cost);
-  alert('สั่งซื้อสำเร็จ');
+// History
+function updateHistory(msg){
+  let h = JSON.parse(localStorage.getItem('history')||'[]');
+  h.push(msg);
+  localStorage.setItem('history',JSON.stringify(h));
+  history.innerHTML=h.map(m=>`<div class="history">${m}</div>`).join('');
+  historyProfile.innerHTML=history.innerHTML;
 }
 
 // Initialize
 pt.innerText = getPoint();
+ptProfile.innerText = getPoint();
+updateHistory('เข้าสู่ระบบ');
+
+// Topup
+function topup(){
+  const v=Number(amt.value);
+  if(!v||v<=0){alert('กรอกจำนวนเงิน');return;}
+  setPoint(getPoint()+v);
+  msg.innerHTML='<span class="success">เติมเงินสำเร็จ 🎉</span>';
+  amt.value='';
+}
+
+// Buy
+function buy(cost,name){
+  if(getPoint()<cost){alert('พอยต์ไม่พอ');return;}
+  setPoint(getPoint()-cost);
+  alert('สั่งซื้อ '+name+' สำเร็จ 🎉');
+}
+
+// Admin add points
+function adminAdd(){
+  const user=adminUser.value.trim();
+  const amt=Number(adminAmt.value);
+  if(!user||amt<=0){alert('กรอกข้อมูลให้ถูกต้อง');return;}
+  if(user===username){
+    setPoint(getPoint()+amt);
+    alert('เพิ่มพอยต์ให้ '+user+' สำเร็จ 🎉');
+  } else {
+    alert('ผู้ใช้ไม่ตรงกับระบบ demo');
+  }
+  adminUser.value=''; adminAmt.value='';
+}
+
+// Load history on start
+const hstart = JSON.parse(localStorage.getItem('history')||'[]');
+history.innerHTML=hstart.map(m=>`<div class="history">${m}</div>`).join('');
+historyProfile.innerHTML=history.innerHTML;
 </script>
 
 </body>
