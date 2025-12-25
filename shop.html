@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>znhen shop</title>
+<script>
+if(!localStorage.getItem("login")){
+  location.href="index.html";
+}
+</script>
+</head>
+<body>
+
+<h1>🛒 znhen shop</h1>
+<p>ยินดีต้อนรับ: <b id="u"></b></p>
+<button onclick="logout()">ออกจากระบบ</button>
+
+<script>
+u.innerText = localStorage.getItem("login");
+function logout(){
+  localStorage.removeItem("login");
+  location.href="index.html";
+}
+</script>
+
+</body>
+</html>
