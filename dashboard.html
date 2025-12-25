@@ -97,11 +97,23 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// ตรวจสอบ login
+// ตรวจสอบ login และดึง username จาก Firestore
 auth.onAuthStateChanged(user=>{
   if(!user) window.location='index.html';
-  else document.getElementById('username').innerText = user.email;
+  else {
+    db.collection('users').doc(user.uid).get()
+      .then(doc=>{
+        if(doc.exists){
+          document.getElementById('username').innerText = doc.data().username || user.email;
+        } else {
+          document.getElementById('username').innerText = user.email;
+        }
+      });
+  }
 });
+
+// Logout
+function logout(){auth.signOut().then(()=>window.location='index.html');}
 
 // Products demo
 const products = [
@@ -117,7 +129,7 @@ products.forEach(p=>{
   productGrid.appendChild(div);
 });
 
-// Points & History
+// Points & History (LocalStorage demo)
 function getPoint(){return Number(localStorage.getItem('point')||0);}
 function setPoint(v){
   localStorage.setItem('point',v);
@@ -153,9 +165,6 @@ function buy(cost,name){
   setPoint(getPoint()-cost);
   alert('สั่งซื้อ '+name+' สำเร็จ 🎉');
 }
-
-// Logout
-function logout(){auth.signOut().then(()=>window.location='index.html');}
 </script>
 
 </body>
