@@ -1,130 +1,118 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<title>znhen shop</title>
+  <meta charset="UTF-8">
+  <title>znhen shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #fffaf3;
+      color: #333;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    header {
+      background: #ffb703;
+      padding: 16px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
 
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:'Kanit',sans-serif;
-  background:#fffaf7;
-  color:#333;
-}
-header{
-  padding:90px 20px;
-  text-align:center;
-  background:linear-gradient(135deg,#ffb3c6,#ffd6a5);
-}
-header h1{
-  font-size:52px;
-  margin:0;
-}
-header p{
-  font-size:20px;
-  margin-top:10px;
-}
-.btn{
-  display:inline-block;
-  margin-top:30px;
-  padding:14px 40px;
-  background:#fff;
-  color:#ff6b81;
-  border-radius:40px;
-  text-decoration:none;
-  font-weight:600;
-}
-section{
-  max-width:1100px;
-  margin:auto;
-  padding:80px 20px;
-}
-.section-title{
-  text-align:center;
-  font-size:36px;
-  margin-bottom:50px;
-}
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:30px;
-}
-.card{
-  background:#fff;
-  border-radius:25px;
-  padding:30px;
-  box-shadow:0 15px 35px rgba(0,0,0,.08);
-  text-align:center;
-}
-.card img{
-  width:100%;
-  border-radius:20px;
-}
-.card h3{
-  margin:20px 0 10px;
-}
-.price{
-  font-size:20px;
-  font-weight:600;
-  margin:10px 0;
-}
-.footer{
-  background:#ffe5ec;
-  text-align:center;
-  padding:50px 20px;
-  margin-top:80px;
-}
-</style>
+    .container {
+      padding: 16px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .banner {
+      background: #ffd166;
+      padding: 24px;
+      border-radius: 16px;
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 18px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .price {
+      color: #e63946;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 8px 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #06d6a0;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+    }
+
+    footer {
+      text-align: center;
+      padding: 16px;
+      margin-top: 32px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-  <h1>znhen shop</h1>
-  <p>ร้านค้าสไตล์มินิมอล น่ารัก ราคาดี</p>
-  <a class="btn" href="#shop">ดูสินค้า</a>
-</header>
+<header>🛒 znhen shop</header>
 
-<section id="shop">
-  <h2 class="section-title">สินค้าแนะนำ</h2>
+<div class="container">
+
+  <div class="banner">
+    ร้านขายของออนไลน์ เริ่มจากศูนย์ ✨  
+    ของดี ราคาน่ารัก ส่งไว
+  </div>
 
   <div class="products">
 
     <div class="card">
-      <img src="https://picsum.photos/400/300?1">
-      <h3>สินค้าแพ็กเกจ A</h3>
-      <p>รายละเอียดสินค้าแบบสั้น กระชับ</p>
-      <div class="price">199 บาท</div>
+      <img src="https://picsum.photos/300/200?1">
+      <h3>สินค้า A</h3>
+      <div class="price">฿199</div>
       <a class="btn" href="#">สั่งซื้อ</a>
     </div>
 
     <div class="card">
-      <img src="https://picsum.photos/400/300?2">
-      <h3>สินค้าแพ็กเกจ B</h3>
-      <p>เหมาะกับคนอยากได้ความคุ้ม</p>
-      <div class="price">359 บาท</div>
+      <img src="https://picsum.photos/300/200?2">
+      <h3>สินค้า B</h3>
+      <div class="price">฿299</div>
       <a class="btn" href="#">สั่งซื้อ</a>
     </div>
-    
+
     <div class="card">
-      <img src="https://picsum.photos/400/300?3">
-      <h3>สินค้าแพ็กเกจ C</h3>
-      <p>จัดเต็มสำหรับสายจริงจัง</p>
-      <div class="price">499 บาท</div>
-      <a class="btn" href="#">สั่งซื้อ</a>
-    </div>
-
-  </div>
-</section>
-
-<div class="footer">
-  <h2>ติดต่อเรา</h2>
-  <p>สั่งซื้อ / สอบถาม ผ่าน LINE</p>
-  <a class="btn" href="#">แอดไลน์ร้าน</a>
-</div>
-
-</body>
-</html>
+      <img src="https://picsum.photos/300/200?3">
+      <
