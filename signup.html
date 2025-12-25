@@ -1,0 +1,27 @@
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBX7r3EhD8uj7hH34rGcrydhLy2NZmllGM",
+  authDomain: "znhen-shop-a082a.firebaseapp.com",
+  projectId: "znhen-shop-a082a",
+  storageBucket: "znhen-shop-a082a.appspot.com",
+  messagingSenderId: "400295230596",
+  appId: "1:400295230596:web:03eafc19db0dfb8e9696d1"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+</script>
+<h2>สมัครสมาชิก</h2>
+<form id="signupForm">
+  <input type="text" id="signupUsername" placeholder="Username" required>
+  <input type="email" id="signupEmail" placeholder="Email" required>
+  <input type="password" id="signupPassword" placeholder="Password" required>
+  <button type="submit">สมัคร</button>
+</form>
+<p>มีบัญชีแล้ว? <a href="index.html">Login</a></p>
+
