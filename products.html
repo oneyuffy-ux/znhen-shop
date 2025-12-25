@@ -1,46 +1,7 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="UTF-8">
-<title>สินค้า | znhen shop</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body{margin:0;font-family:system-ui;background:#fffaf3}
-nav{background:#ffb703;padding:12px;display:flex;gap:16px;justify-content:center;font-weight:bold}
-nav a{text-decoration:none;color:#000}
-.grid{
-  padding:16px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:16px;
-}
-.card{
-  background:#fff;
-  padding:16px;
-  border-radius:16px;
-  box-shadow:0 4px 10px rgba(0,0,0,.1);
-}
-</style>
-</head>
-<body>
+<p>💎 พอยต์ของคุณ: <b id="pt"></b></p>
 
-<nav>
-  <a href="index.html">หน้าแรก</a>
-  <a href="products.html">สินค้าทั้งหมด</a>
-  <a href="topup.html">เติมเงิน</a>
-  <a href="contact.html">ติดต่อเรา</a>
-</nav>
+<script>
+document.getElementById("pt").innerText =
+  localStorage.getItem("point") || 0;
+</script>
 
-<div class="grid">
-  <div class="card">
-    <h3>สินค้า A</h3>
-    <p>ราคา 199 บาท</p>
-  </div>
-  <div class="card">
-    <h3>สินค้า B</h3>
-    <p>ราคา 299 บาท</p>
-  </div>
-</div>
-
-</body>
-</html>
