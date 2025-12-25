@@ -2,62 +2,38 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>Login | znhen shop</title>
+<title>znhen shop</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body{
-  font-family: system-ui;
-  background:#fff3d6;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
-.box{
-  background:#fff;
-  padding:24px;
-  border-radius:16px;
-  width:300px;
-  box-shadow:0 10px 20px rgba(0,0,0,.1);
-}
-input,button{
-  width:100%;
-  padding:10px;
-  margin-top:10px;
-  border-radius:8px;
-  border:1px solid #ddd;
-}
-button{
+body{margin:0;font-family:system-ui;background:#fffaf3}
+nav{
   background:#ffb703;
-  border:none;
+  padding:12px;
+  display:flex;
+  gap:16px;
+  justify-content:center;
   font-weight:bold;
 }
-a{display:block;text-align:center;margin-top:10px;}
+nav a{text-decoration:none;color:#000}
+.hero{
+  padding:40px;
+  text-align:center;
+}
 </style>
 </head>
 <body>
 
-<div class="box">
-  <h2>🔐 ล็อกอิน</h2>
-  <input id="user" placeholder="ชื่อผู้ใช้">
-  <input id="pass" type="password" placeholder="รหัสผ่าน">
-  <button onclick="login()">เข้าสู่ระบบ</button>
-  <a href="register.html">สมัครสมาชิก</a>
-</div>
+<nav>
+  <a href="index.html">หน้าแรก</a>
+  <a href="products.html">สินค้าทั้งหมด</a>
+  <a href="topup.html">เติมเงิน</a>
+  <a href="contact.html">ติดต่อเรา</a>
+</nav>
 
-<script>
-function login(){
-  const u = user.value;
-  const p = pass.value;
-  const data = JSON.parse(localStorage.getItem(u));
-  if(!data || data.pass !== p){
-    alert("ชื่อผู้ใช้หรือรหัสผ่านผิด");
-    return;
-  }
-  localStorage.setItem("login", u);
-  location.href="shop.html";
-}
-</script>
+<div class="hero">
+  <h1>🛒 znhen shop</h1>
+  <p>ร้านค้าออนไลน์ เริ่มจากศูนย์ แต่จริงใจ 💛</p>
+</div>
 
 </body>
 </html>
