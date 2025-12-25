@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>TrueMoney | znhen shop</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{font-family:system-ui;background:#fffaf3;text-align:center;padding:40px}
+input,button{
+  padding:12px;
+  font-size:16px;
+  border-radius:12px;
+  margin:8px;
+}
+button{
+  background:#ff7a00;
+  color:#fff;
+  border:none;
+  font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<h2>🧧 เติมเงินด้วยซอง TrueMoney</h2>
+
+<p>กรอกจำนวนเงินที่ต้องการเติม</p>
+<input id="amt" type="number" placeholder="เช่น 100">
+
+<br>
+<button onclick="pay()">สร้างซอง / ยืนยันการเติม</button>
+
+<script>
+function pay(){
+  const money = Number(amt.value);
+  if(!money || money <= 0){
+    alert("กรอกจำนวนเงินให้ถูกต้อง");
+    return;
+  }
+
+  // 🟡 ตอนนี้: จำลองการจ่ายเงิน
+  // 🔴 ของจริง: เปลี่ยนเป็นลิงก์ซอง TrueMoney ของเจิ้น
+
+  let point = Number(localStorage.getItem("point") || 0);
+  localStorage.setItem("point", point + money);
+
+  alert("เติมเงินสำเร็จ 🎉 พอยต์เข้าแล้ว");
+  location.href="products.html";
+}
+</script>
+
+</body>
+</html>
