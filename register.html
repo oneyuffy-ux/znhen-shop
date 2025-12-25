@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Register | znhen shop</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  font-family: system-ui;
+  background:#e8f9f1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+.box{
+  background:#fff;
+  padding:24px;
+  border-radius:16px;
+  width:300px;
+}
+input,button{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border-radius:8px;
+}
+button{
+  background:#06d6a0;
+  border:none;
+  font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2>📝 สมัครสมาชิก</h2>
+  <input id="user" placeholder="ชื่อผู้ใช้">
+  <input id="pass" type="password" placeholder="รหัสผ่าน">
+  <button onclick="reg()">สมัคร</button>
+</div>
+
+<script>
+function reg(){
+  if(!user.value || !pass.value){
+    alert("กรอกให้ครบ");
+    return;
+  }
+  localStorage.setItem(user.value, JSON.stringify({
+    pass: pass.value
+  }));
+  alert("สมัครสำเร็จ");
+  location.href="index.html";
+}
+</script>
+
+</body>
+</html>
