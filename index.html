@@ -1,39 +1,197 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>znhen shop</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <style>
-body{margin:0;font-family:system-ui;background:#fffaf3}
-nav{
-  background:#ffb703;
-  padding:12px;
-  display:flex;
-  gap:16px;
-  justify-content:center;
-  font-weight:bold;
+:root{
+  --bg:#0b0f1a;
+  --card:#11172a;
+  --accent:#ff7a00;
+  --text:#e6e9f0;
+  --muted:#9aa4bf;
+  --green:#22c55e;
 }
-nav a{text-decoration:none;color:#000}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto;
+  background:radial-gradient(1200px 600px at 50% -10%, #1a2140, var(--bg));
+  color:var(--text);
+}
+a{color:inherit;text-decoration:none}
+.container{max-width:1100px;margin:auto;padding:16px}
+.nav{
+  position:sticky;top:0;z-index:10;
+  backdrop-filter: blur(8px);
+  background:rgba(11,15,26,.6);
+  border-bottom:1px solid #1f2646;
+}
+.nav .row{display:flex;gap:14px;align-items:center;justify-content:space-between}
+.brand{font-weight:900;letter-spacing:.5px}
+.menu a{padding:10px 12px;border-radius:10px}
+.menu a:hover{background:#1a2140}
 .hero{
-  padding:40px;
-  text-align:center;
+  margin:20px 0 10px;
+  background:linear-gradient(135deg,#1a2140,#0b0f1a);
+  border:1px solid #1f2646;border-radius:20px;
+  padding:24px;display:grid;gap:10px
 }
+.hero h1{margin:0;font-size:28px}
+.badges{display:flex;gap:8px;flex-wrap:wrap}
+.badge{font-size:12px;color:#cbd5ff;background:#1a2140;border:1px solid #1f2646;padding:6px 10px;border-radius:999px}
+
+.section{margin:18px 0}
+.section h2{margin:0 0 10px}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px
+}
+.card{
+  background:linear-gradient(180deg,#121a33,#0f1530);
+  border:1px solid #1f2646;border-radius:18px;
+  padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.25)
+}
+.card img{
+  width:100%;height:130px;object-fit:cover;
+  border-radius:12px;border:1px solid #1f2646
+}
+.card h3{margin:10px 0 4px}
+.price{color:#ffd166;font-weight:900}
+.btn{
+  display:inline-flex;gap:8px;align-items:center;justify-content:center;
+  padding:10px 14px;border-radius:999px;border:1px solid #2a356b;
+  background:linear-gradient(135deg,#ff7a00,#ff9f1c);
+  color:#000;font-weight:900;margin-top:8px
+}
+.btn.ghost{
+  background:transparent;color:#cbd5ff;border-color:#2a356b
+}
+.row2{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+@media(max-width:900px){.row2{grid-template-columns:1fr}}
+
+.box{
+  background:linear-gradient(180deg,#121a33,#0f1530);
+  border:1px solid #1f2646;border-radius:18px;padding:14px
+}
+input{
+  width:100%;padding:12px;border-radius:12px;
+  border:1px solid #2a356b;background:#0b0f1a;color:var(--text)
+}
+small{color:var(--muted)}
+.footer{opacity:.7;text-align:center;padding:30px 10px}
+.hr{height:1px;background:#1f2646;margin:12px 0}
+.success{color:var(--green);font-weight:900}
+.point{font-weight:900}
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="index.html">หน้าแรก</a>
-  <a href="products.html">สินค้าทั้งหมด</a>
-  <a href="topup.html">เติมเงิน</a>
-  <a href="contact.html">ติดต่อเรา</a>
-</nav>
-
-<div class="hero">
-  <h1>🛒 znhen shop</h1>
-  <p>ร้านค้าออนไลน์ เริ่มจากศูนย์ แต่จริงใจ 💛</p>
+<!-- NAV -->
+<div class="nav">
+  <div class="container row">
+    <div class="brand">🛒 znhen shop</div>
+    <div class="menu">
+      <a href="#home">หน้าแรก</a>
+      <a href="#products">สินค้าทั้งหมด</a>
+      <a href="#topup">เติมเงิน</a>
+      <a href="#contact">ติดต่อเรา</a>
+    </div>
+  </div>
 </div>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <h1>ร้านดิจิทัลสโตร์ เติมไว ใช้ง่าย</h1>
+    <div class="badges">
+      <span class="badge">⚡ เติมเร็ว</span>
+      <span class="badge">🧧 TrueMoney</span>
+      <span class="badge">🔒 ปลอดภัย</span>
+    </div>
+    <small>ฟีลเดียวกับเว็บตัวอย่าง แต่โค้ดใหม่ ใช้ฟรี ถาวร</small>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="section">
+    <h2>สินค้าทั้งหมด</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://picsum.photos/400/240?1">
+        <h3>สินค้า A</h3>
+        <div class="price">199 พอยต์</div>
+        <button class="btn" onclick="buy(199)">ซื้อด้วยพอยต์</button>
+      </div>
+      <div class="card">
+        <img src="https://picsum.photos/400/240?2">
+        <h3>สินค้า B</h3>
+        <div class="price">299 พอยต์</div>
+        <button class="btn" onclick="buy(299)">ซื้อด้วยพอยต์</button>
+      </div>
+      <div class="card">
+        <img src="https://picsum.photos/400/240?3">
+        <h3>สินค้า C</h3>
+        <div class="price">399 พอยต์</div>
+        <button class="btn" onclick="buy(399)">ซื้อด้วยพอยต์</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPUP -->
+  <section id="topup" class="section">
+    <h2>เติมเงิน (TrueMoney)</h2>
+    <div class="row2">
+      <div class="box">
+        <p>กรอกจำนวนเงิน (1 บาท = 1 พอยต์)</p>
+        <input id="amt" type="number" placeholder="เช่น 100">
+        <button class="btn" style="margin-top:10px" onclick="topup()">ยืนยันการเติม</button>
+        <div class="hr"></div>
+        <small>หมายเหตุ: โหมดร้านเล็ก (จำลองการยืนยัน) พร้อมอัปเกรด API ภายหลัง</small>
+      </div>
+      <div class="box">
+        <h3>พอยต์ของคุณ</h3>
+        <p class="point"><span id="pt">0</span> พอยต์</p>
+        <p id="msg"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <h2>ติดต่อเรา</h2>
+    <div class="box">
+      <p>LINE: @znhenshop</p>
+      <p>Facebook: znhen shop</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer">© 2025 znhen shop</div>
+
+<script>
+function getPoint(){return Number(localStorage.getItem('point')||0)}
+function setPoint(v){localStorage.setItem('point',v);pt.innerText=v}
+
+function topup(){
+  const v = Number(amt.value);
+  if(!v||v<=0) return alert('กรอกจำนวนเงิน');
+  setPoint(getPoint()+v);
+  msg.innerHTML = '<span class="success">เติมเงินสำเร็จ 🎉</span>';
+  amt.value='';
+}
+function buy(cost){
+  const p = getPoint();
+  if(p<cost) return alert('พอยต์ไม่พอ');
+  setPoint(p-cost);
+  alert('สั่งซื้อสำเร็จ');
+}
+pt.innerText = getPoint();
+</script>
 
 </body>
 </html>
